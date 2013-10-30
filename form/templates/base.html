@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>{% block title %}{% endblock title %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap -->
+    {% block cssfile %}
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
+    {% endblock cssfile %}
+
+    <meta name="msapplication-TileColor" content="#004d18"/>
+    <meta name="msapplication-TileImage" content="apple-touch-icon-144x144.png"/>
+
+    <link rel="shortcut icon" href='{% static "ico/favicon.ico" %}'/>
+
+
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+
+    <!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
+    <script src="{% static 'js/respond.min.js' %}"></script>
+
+  </head>
+
+  <body>
+    {% block center %}
+    <div class="text-center">
+    {% endblock center %}
+      {% block content %}
+      my base content
+      {% endblock content %}
+    </div>
+  </body>
+
+  {% block footer %}
+  <footer>
+  </footer>
+  {% endblock footer %}
+</html>
