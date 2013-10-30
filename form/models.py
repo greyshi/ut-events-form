@@ -15,7 +15,7 @@ class Category(models.Model):
         verbose_name_plural = "Categories"
 
 
-class Entry(models.Model):
+class Event(models.Model):
     title = models.CharField(max_length=255)
     location = models.CharField(max_length=255)
     description = models.TextField()

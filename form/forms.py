@@ -24,8 +24,9 @@ class EventForm(forms.Form):
         required = False
     )
 
-    description = forms.TextField(
-        label='Description'
+    description = forms.CharField(
+        label='Description',
+        max_length = 600,
         required=False
     )
 
