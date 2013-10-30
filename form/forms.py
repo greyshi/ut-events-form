@@ -33,6 +33,16 @@ class EventForm(forms.Form):
         required=False
     )
 
+    contact_name = forms.CharField(
+        label='Contact Name',
+        max_length=255
+    )
+
+    contact_email = forms.EmailField(
+        label='Contact Email',
+        max_length=255
+    )
+
     helper = FormHelper()
     helper.form_class = 'form-horizontal'
     helper.layout = Layout(
@@ -41,6 +51,8 @@ class EventForm(forms.Form):
         Field('start_time', css_class='form-control', placeholder='Enter Start Time'),
         Field('end_time', css_class='form-control', placeholder='Enter End Time'),
         Field('description', css_class='form-control', placeholder='Enter an Event Description'),
+        Field('contact_name', css_class='form-control', placeholder='Enter your name'),
+        Field('contact_email', css_class='form-control', placeholder='Enter a valid @utexas email address'),
         FormActions(
             Submit('save_changes', 'Create', css_class="btn-primary btn-lg", style="margin-top: 25px"),
         )

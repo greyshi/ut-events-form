@@ -15,7 +15,7 @@ MANAGERS = ADMINS
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'utform', # Or path to database file if using sqlite3.
+        'NAME': 'utevents', # Or path to database file if using sqlite3.
         # The following settings are not used with sqlite3:
         #'USER': 'arash',
         'USER': 'arash',
@@ -125,6 +125,7 @@ INSTALLED_APPS = (
     # Uncomment the next line to enable the admin:
     'django.contrib.admin',
     'crispy_forms',
+    'form',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
 )
@@ -162,7 +163,7 @@ LOGGING = {
 
 # Parse database configuration from $DATABASE_URL
 import dj_database_url
-DATABASES['default'] =  dj_database_url.config(default='postgres://arash:@localhost/utevents')
+DATABASES['default'] =  dj_database_url.config(default='postgres://arash:@localhost/utform')
 
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()

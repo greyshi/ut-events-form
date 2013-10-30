@@ -18,11 +18,13 @@ class Category(models.Model):
 class Event(models.Model):
     title = models.CharField(max_length=255)
     location = models.CharField(max_length=255)
-    description = models.TextField()
-    pub_date = models.DateTimeField('date published', auto_now_add=True,)
-    start_time = models.DateTimeField('start of event')
-    end_time = models.DateTimeField('end of event')
+    description = models.TextField(blank=True)
+    pub_date = models.DateTimeField('date published', auto_now_add=True)
+    start_time = models.DateTimeField('start of event', auto_now_add=True)
+    end_time = models.DateTimeField('end of event', auto_now_add=True)
     categories = models.ManyToManyField(Category)
+    contact_name = models.CharField(max_length=100)
+    contact_email = models.EmailField()
 
     def __unicode__(self):
         return self.title
