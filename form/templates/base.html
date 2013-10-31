@@ -12,11 +12,34 @@
     <link href="//netdna.bootstrapcdn.com/bootswatch/3.0.0/united/bootstrap.min.css" rel="stylesheet">
 
     {% endblock cssfile %}
+    <link type="text/css" href="/static/jquery/css/ui-lightness/jquery-ui-1.10.3.custom.min.css" rel="stylesheet" />
+    <link type="text/css" href="/static/jquery/css/jquery-ui-timepicker-addon.css" rel="stylesheet" />
+    <script type="text/javascript" src='{% static "jquery/js/jquery-1.9.1.js" %}'></script>
+    <script type="text/javascript" src='{% static "jquery/js/jquery-ui-1.10.3.custom.min.js" %}'></script>
+    <script type="text/javascript" src='{% static "jquery/js/jquery-ui-timepicker-addon.js" %}'></script>
 
     <meta name="msapplication-TileColor" content="#004d18"/>
     <meta name="msapplication-TileImage" content="apple-touch-icon-144x144.png"/>
 
     <link rel="shortcut icon" href='{% static "ico/favicon.ico" %}'/>
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $("#id_start_time").datetimepicker({
+          dateFormat: 'mm/dd/yy',
+          timeFormat: 'h:mmTT',
+          stepMinute: 15
+        });
+      });
+    </script>
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $("#id_end_time").datetimepicker({
+          dateFormat: 'mm/dd/yy',
+          timeFormat: 'hh:mmTT',
+          stepMinute: 15
+        });
+      });
+    </script>
   </head>
 
   <body>
