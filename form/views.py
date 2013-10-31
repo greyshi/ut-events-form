@@ -2,6 +2,7 @@ import datetime
 
 from django.shortcuts import render
 from django.http  import HttpResponseRedirect
+from django.core import serializers
 
 from form.models import Event, Category
 from form.forms import EventForm
@@ -28,3 +29,10 @@ def create(request):
         form = EventForm()  # an unbound form
 
     return render(request, 'create.html', {'form': form})
+
+def events(request):
+    events = serializers.serialize("json", Event.objects.all(),
+                                   fields=('title', 'location', 'description',
+                                           'start_time', 'end_time', 'categories'))
+    return render(request, 'events.html', {'events': events})
+
