@@ -1,10 +1,20 @@
 from django import forms
 from django.contrib.admin import widgets
 from django.utils.formats import get_format
+from django.core.exceptions import ValidationError
 
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Div, Submit, HTML, Button, Row, Field
 from crispy_forms.bootstrap import AppendedText, PrependedText, FormActions
+
+
+class UTEmailField(forms.EmailField):
+    def clean(self, value):
+        value = self.to_python(value).strip()
+        email = value.split('@')
+        if len(email) > 1 and email[1] != 'utexas.edu':
+            raise ValidationError("Enter a utexas.edu email address", code='invalid')
+        return super(UTEmailField, self).clean(value)
 
 
 class EventForm(forms.Form):
@@ -41,7 +51,7 @@ class EventForm(forms.Form):
         max_length=255
     )
 
-    student_email = forms.EmailField(
+    student_email = UTEmailField(
         label='Student Email',
         max_length=255
     )
