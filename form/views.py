@@ -19,11 +19,14 @@ def create(request):
             description = form.cleaned_data.get('description')
             contact_name = form.cleaned_data['contact_name']
             student_email = form.cleaned_data['student_email']
+            categories = form.cleaned_data['categories']
             event = Event(title=title, location=location, start_time=start_time,
                           end_time=end_time, description=description,
                           contact_name=contact_name, student_email=student_email
                          )
             event.save()
+            for c in categories:
+                event.categories.create(title=c)
             return HttpResponseRedirect('/')
     else:
         form = EventForm()  # an unbound form
@@ -33,6 +36,7 @@ def create(request):
 def events(request):
     events = serializers.serialize("json", Event.objects.all(),
                                    fields=('title', 'location', 'description',
-                                           'start_time', 'end_time', 'categories'))
+                                           'start_time', 'end_time', 'categories'),
+                                   relations=('categories',))
     return HttpResponse(events, mimetype='application/json')
 

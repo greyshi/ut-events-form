@@ -5,7 +5,15 @@ from django.utils import timezone
 
 
 class Category(models.Model):
-    title = models.CharField(max_length=100, db_index=True)
+    CATEGORY_CHOICES = (
+        ('academic', 'Academic'),
+        ('entertainment', 'Entertainment'),
+        ('fundraisers', 'Fundraisers'),
+        ('social', 'Social'),
+        ('sports', 'Sports'),
+        ('volunteer', 'Volunteer'),
+    )
+    title = models.CharField(max_length=100, choices=CATEGORY_CHOICES, db_index=True)
 
     def __unicode__(self):
         return self.title

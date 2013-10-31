@@ -1,11 +1,11 @@
 from django import forms
-from django.contrib.admin import widgets
-from django.utils.formats import get_format
 from django.core.exceptions import ValidationError
 
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Div, Submit, HTML, Button, Row, Field
 from crispy_forms.bootstrap import AppendedText, PrependedText, FormActions
+
+from models import Category
 
 
 class UTEmailField(forms.EmailField):
@@ -56,6 +56,12 @@ class EventForm(forms.Form):
         max_length=255
     )
 
+    categories = forms.MultipleChoiceField(
+        label='Categories',
+        widget=forms.SelectMultiple(attrs={'size': len(Category.CATEGORY_CHOICES)}),
+        choices=Category.CATEGORY_CHOICES,
+    )
+
     helper = FormHelper()
     helper.form_class = 'form-horizontal'
     helper.layout = Layout(
@@ -63,6 +69,7 @@ class EventForm(forms.Form):
         Field('location', css_class='form-control', placeholder='Enter Location'),
         Field('start_time', css_class='form-control', placeholder='Enter Start Time'),
         Field('end_time', css_class='form-control', placeholder='Enter End Time'),
+        Field('categories', css_class='form-control', placeholder='Choose Categories'),
         Field('description', css_class='form-control', placeholder='Enter an Event Description'),
         Field('contact_name', css_class='form-control', placeholder='Enter your name (will be kept private)'),
         Field('student_email', css_class='form-control', placeholder='Enter a valid utexas.edu email address (will be kept private)'),
