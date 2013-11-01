@@ -130,6 +130,8 @@ INSTALLED_APPS = (
     # 'django.contrib.admindocs',
 )
 
+SESSION_ENGINE = "django.contrib.sessions.backends.signed_cookies"
+
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.JSONSerializer'
 
 SERIALIZATION_MODULES = {

@@ -6,12 +6,6 @@
     <title>{% block title %}{% endblock title %}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Bootstrap -->
-    {% block cssfile %}
-    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
-    <link href="//netdna.bootstrapcdn.com/bootswatch/3.0.0/journal/bootstrap.min.css" rel="stylesheet">
-
-    {% endblock cssfile %}
     <link type="text/css" href="/static/jquery/css/ui-lightness/jquery-ui-1.10.3.custom.min.css" rel="stylesheet" />
     <link type="text/css" href="/static/jquery/css/jquery-ui-timepicker-addon.css" rel="stylesheet" />
     <script type="text/javascript" src='{% static "jquery/js/jquery-1.9.1.js" %}'></script>
@@ -49,6 +43,11 @@
       ga('create', 'UA-42184890-2', 'utevents.herokuapp.com');
       ga('send', 'pageview');
     </script>
+
+    <!-- Bootstrap -->
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+    <link href="//netdna.bootstrapcdn.com/bootswatch/3.0.0/journal/bootstrap.min.css" rel="stylesheet">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.1/js/bootstrap.min.js"></script>
   </head>
 
   <body>

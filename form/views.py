@@ -9,6 +9,7 @@ from form.forms import EventForm
 
 
 def create(request):
+    request.session['status'] = 'new'
     if request.method == 'POST':
         form = EventForm(request.POST)
         if form.is_valid():
@@ -27,11 +28,13 @@ def create(request):
             event.save()
             for c in categories:
                 event.categories.add(Category.objects.get(title=c))
-            return HttpResponseRedirect('/')
+            request.session['status'] = 'success'
+        else:
+            request.session['status'] = 'failure'
     else:
         form = EventForm()  # an unbound form
 
-    return render(request, 'create.html', {'form': form})
+    return render(request, 'create.html', {'form': form, 'status': request.session['status']})
 
 def events(request):
     events = serializers.serialize("json", Event.objects.all(),
