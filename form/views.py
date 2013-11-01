@@ -29,6 +29,7 @@ def create(request):
             for c in categories:
                 event.categories.add(Category.objects.get(title=c))
             request.session['status'] = 'success'
+            form = EventForm()  # clear the form
         else:
             request.session['status'] = 'failure'
     else:
