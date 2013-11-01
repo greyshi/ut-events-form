@@ -14,6 +14,7 @@ class Category(models.Model):
         ('volunteer', 'Volunteer'),
     )
     title = models.CharField(max_length=100, choices=CATEGORY_CHOICES, db_index=True)
+    #color = models.CharField(max_length=100)
 
     def __unicode__(self):
         return self.title
@@ -45,5 +46,5 @@ class Event(models.Model):
 
     class Meta:
         ordering = ['pub_date']
-        verbose_name_plural = "Entries"
+        verbose_name_plural = "Events"
 
