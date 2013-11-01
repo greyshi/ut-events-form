@@ -26,7 +26,7 @@ def create(request):
                          )
             event.save()
             for c in categories:
-                event.categories.create(title=c)
+                event.categories.add(Category.objects.get(title=c))
             return HttpResponseRedirect('/')
     else:
         form = EventForm()  # an unbound form
@@ -38,5 +38,9 @@ def events(request):
                                    fields=('title', 'location', 'description',
                                            'start_time', 'end_time', 'categories'),
                                    relations=('categories',))
+    return HttpResponse(events, mimetype='application/json')
+
+def categories(request):
+    events = serializers.serialize("json", Category.objects.all())
     return HttpResponse(events, mimetype='application/json')
 

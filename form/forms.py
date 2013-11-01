@@ -48,7 +48,8 @@ class EventForm(forms.Form):
 
     contact_name = forms.CharField(
         label='Contact Name',
-        max_length=255
+        max_length=255,
+        required=False
     )
 
     student_email = UTEmailField(
@@ -58,8 +59,8 @@ class EventForm(forms.Form):
 
     categories = forms.MultipleChoiceField(
         label='Categories',
-        widget=forms.SelectMultiple(attrs={'size': len(Category.CATEGORY_CHOICES)}),
-        choices=Category.CATEGORY_CHOICES,
+        widget=forms.SelectMultiple(attrs={'size': len(Category.objects.all())}),
+        choices=[(c.title, c.title) for c in Category.objects.all()],
     )
 
     helper = FormHelper()
@@ -70,8 +71,8 @@ class EventForm(forms.Form):
         Field('start_time', css_class='form-control', placeholder='Enter Start Time'),
         Field('end_time', css_class='form-control', placeholder='Enter End Time'),
         Field('categories', css_class='form-control', placeholder='Choose Categories'),
-        Field('description', css_class='form-control', placeholder='Enter an Event Description'),
-        Field('contact_name', css_class='form-control', placeholder='Enter your name (will be kept private)'),
+        Field('description', css_class='form-control', placeholder='Enter an Event Description (you can provide contact info here)'),
+        Field('contact_name', css_class='form-control', placeholder='Enter your name or organization'),
         Field('student_email', css_class='form-control', placeholder='Enter a valid utexas.edu email address (will be kept private)'),
         FormActions(
             Submit('save_changes', 'Create', css_class="btn-primary btn-lg", style="margin-top: 25px"),
