@@ -38,7 +38,7 @@ def create(request):
     return render(request, 'create.html', {'form': form, 'status': request.session['status']})
 
 def events(request):
-    if request.META.get('Accept') == 'application/json':
+    if request.META.get('HTTP_ACCEPT') == 'application/json':
         events = serializers.serialize("json", Event.objects.all(),
                                        fields=('title', 'location', 'description',
                                                'start_time', 'end_time', 'categories'),
