@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}
+UT Events
+{% endblock title %}
+
+{% block jquery %}
+{% endblock jquery %}
+
+{% block center %}
+{% endblock center %}
+
+{% block content %}
+<div class="container">
+{% for event in events %}
+    <h3 class="text-primary" style='margin-top: 30px'>{{ event.title }}</h3>
+    <div class="well well-lg">
+      <h5 class="text-info">When</h5>
+      <p>{{ event.start_time }}</p>
+      <h5 class="text-info">Where</h5>
+      <p>{{ event.location }}</p>
+      <h5 class="text-info">What</h5>
+      <p>{{ event.description }}</p>
+    </div>
+{% endfor %}
+</div>
+
+{% endblock content %}
+
+{% block footer %}
+{% endblock footer %}
