@@ -8,6 +8,11 @@ from form.models import Event, Category
 from form.forms import EventForm
 
 
+def home(request):
+    return render(request, 'home.html')
+
+
+
 def create(request):
     request.session['status'] = 'new'
     if request.method == 'POST':

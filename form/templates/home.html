@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+{% block center %}
+{% endblock center %}
+<div class="container jumbotron" style="margin-top: 40px">
+  <h1 style="margin-bottom: 20px"><span class="text-info">UT Events</span></h1>
+  <p>Create and view student submitted events. Find fun things to do.</p>
+  <p style="margin-top: 20px"><a class="btn btn-primary btn-lg" role="button" href={% url 'create' %}>Submit an Event</a>
+    <a class="btn btn-info btn-lg" role="button" href={% url 'events' %}>View Events</a>
+  </p>
+</div>
+{% endblock content %}
