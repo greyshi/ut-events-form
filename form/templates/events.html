@@ -15,14 +15,16 @@ UT Events
   <h1><a href="{% url 'home' %}">UT Events</a></h1>
   <legend></legend>
   {% for event in events %}
-      <h3 class="text-primary" style='margin-top: 30px'>{{ event.title }}</h3>
-      <div class="well well-lg">
+      <h3 style='margin-top: 30px'><a href="{% url 'detail' event.id %}">{{ event.title }}</a></h3>
+      <div class="well well">
         <h5 class="text-info">When</h5>
-        <p>{{ event.start_time }}</p>
+        {% if event.end_time %}
+          <p>{{ event.start_time }} - {{ event.end_time }}</p>
+        {% else %}
+          <p>{{ event.start_time }}</p>
+        {% endif %}
         <h5 class="text-info">Where</h5>
         <p>{{ event.location }}</p>
-        <h5 class="text-info">What</h5>
-        <p>{{ event.description }}</p>
       </div>
   {% endfor %}
 </div>

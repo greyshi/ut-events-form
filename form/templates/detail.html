@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}
+UT Events - {{ event.title }}
+{% endblock title %}
+
+{% block jquery %}
+{% endblock jquery %}
+
+{% block center %}
+{% endblock center %}
+
+{% block content %}
+<div class="container">
+  <h1><a href="{% url 'home' %}">UT Events</a></h1>
+  <legend></legend>
+  <h2 class="text-info" style='margin-top: 30px; margin-bottom: 20px'>{{ event.title }}</h2>
+  <p><strong>Starts</strong>: {{ event.start_time }}</p>
+  {% if event.end_time %}
+    <p><strong>Ends</strong>: {{ event.end_time }}</p>
+  {% endif %}
+  <p><strong>Location</strong>: {{ event.location }}</p>
+  {% if event.description %}
+    <p><strong>Description</strong>: {{ event.description }}</p>
+  {% endif %}
+  {% if event.contact_name %}
+    <p><strong>Contact</strong>: {{ event.contact_name }}</p>
+  {% endif %}
+  <em><p class='text-info' style="margin-top: 20px">Added on {{ event.pub_date }}</p></em>
+</div>
+
+{% endblock content %}
+
+{% block footer %}
+{% endblock footer %}

@@ -1,6 +1,6 @@
 import datetime
 
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http  import HttpResponse, HttpResponseRedirect
 from django.core import serializers
 
@@ -51,6 +51,12 @@ def events(request):
                                                   relations=('categories',))
         return HttpResponse(serialized_events, mimetype='application/json')
     return render(request, 'events.html', {'events': event_list})
+
+def detail(request, event_id):
+    event = get_object_or_404(Event, pk=event_id)
+    return render(request, 'detail.html', {
+        'event': event,
+    })
 
 def categories(request):
     events = serializers.serialize("json", Category.objects.all())
