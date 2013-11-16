@@ -12,7 +12,6 @@ def home(request):
     return render(request, 'home.html')
 
 
-
 def create(request):
     request.session['status'] = 'new'
     if request.method == 'POST':
