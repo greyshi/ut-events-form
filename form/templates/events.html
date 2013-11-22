@@ -16,7 +16,7 @@ UT Events
   <legend></legend>
   {% for event in events %}
       <h3 style='margin-top: 30px'><a href="{% url 'detail' event.id %}">{{ event.title }}</a></h3>
-      <div class="well well">
+      <div class="well">
         <h5 class="text-info">When</h5>
         {% if event.end_time %}
           <p>{{ event.start_time }} - {{ event.end_time }}</p>
@@ -26,6 +26,8 @@ UT Events
         <h5 class="text-info">Where</h5>
         <p>{{ event.location }}</p>
       </div>
+      <p style="margin-top: -10px; margin-bottom: 50px"><a href="{% url 'detail' event.id %}#disqus_thread" data-disqus-identifier="{{ event.id }}"></a></p>
+
   {% endfor %}
 </div>
 
