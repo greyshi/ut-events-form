@@ -126,9 +126,13 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'crispy_forms',
     'form',
+    'tastypie',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
 )
+
+TASTYPIE_DEFAULT_FORMATS = ['json']
+API_LIMIT_PER_PAGE = 0
 
 SESSION_ENGINE = "django.contrib.sessions.backends.signed_cookies"
 

@@ -43,12 +43,6 @@ def create(request):
 
 def events(request):
     event_list = Event.objects.filter(start_time__gte=datetime.datetime.now()).order_by('start_time')
-    if request.META.get('HTTP_ACCEPT') == 'application/json':
-        serialized_events = serializers.serialize("json", event_list,
-                                                  fields=('title', 'location', 'description',
-                                                  'start_time', 'end_time', 'categories'),
-                                                  relations=('categories',))
-        return HttpResponse(serialized_events, mimetype='application/json')
     return render(request, 'events.html', {'events': event_list})
 
 def detail(request, event_id):
@@ -56,8 +50,3 @@ def detail(request, event_id):
     return render(request, 'detail.html', {
         'event': event,
     })
-
-def categories(request):
-    events = serializers.serialize("json", Category.objects.all())
-    return HttpResponse(events, mimetype='application/json')
-
