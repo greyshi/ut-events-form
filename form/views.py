@@ -6,6 +6,7 @@ from django.core import serializers
 
 from form.models import Event, Category
 from form.forms import EventForm
+from form.utils import generate_random_string
 
 
 def home(request):
@@ -25,9 +26,11 @@ def create(request):
             contact_name = form.cleaned_data['contact_name']
             student_email = form.cleaned_data['student_email']
             categories = form.cleaned_data['categories']
+            confirmation_code = generate_random_string(32, 8)
             event = Event(title=title, location=location, start_time=start_time,
                           end_time=end_time, description=description,
-                          contact_name=contact_name, student_email=student_email
+                          contact_name=contact_name, student_email=student_email,
+                          confirmation_code=confirmation_code, is_verified=False
                          )
             event.save()
             for c in categories:
