@@ -37,6 +37,6 @@ class Event(models.Model):
     published_recently.admin_order_field = 'pub_date'
 
     class Meta:
-        ordering = ['pub_date']
+        ordering = ['start_time']
         verbose_name_plural = "Events"
 

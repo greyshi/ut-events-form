@@ -21,3 +21,9 @@ class EventResource(ModelResource):
         resource_name = 'events'
         authorization= Authorization()
         allowed_methods = ['get', 'post']
+        ordering = ['pub_date', 'start_time', 'end_time', 'title']
+        filtering = {
+            'pub_date': ['exact', 'lt', 'lte', 'gte', 'gt'],
+            'start_time': ['exact', 'lt', 'lte', 'gte', 'gt'],
+            'end_time': ['exact', 'lt', 'lte', 'gte', 'gt'],
+        }
