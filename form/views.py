@@ -6,7 +6,7 @@ from django.core import serializers
 
 from form.models import Event, Category
 from form.forms import EventForm
-from form.utils import generate_random_string
+from form.util import generate_random_string
 
 
 def home(request):

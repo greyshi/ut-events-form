@@ -127,6 +127,7 @@ INSTALLED_APPS = (
     'crispy_forms',
     'form',
     'tastypie',
+    'south',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
 )

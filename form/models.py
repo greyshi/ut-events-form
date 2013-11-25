@@ -26,8 +26,6 @@ class Event(models.Model):
     contact_name = models.CharField(max_length=100, blank=True)
     student_email = models.EmailField()
     categories = models.ManyToManyField(Category)
-    confirmation_code = models.CharField(max_length=255)
-    is_verified = models.BooleanField()
 
     def __unicode__(self):
         return self.title
