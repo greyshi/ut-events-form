@@ -21,7 +21,7 @@ UT Events - {{ event.title }}
   {% endif %}
   <p><strong>Location</strong>: {{ event.location }}</p>
   {% if event.description %}
-    <p><strong>Description</strong>: {{ event.description }}</p>
+    <p><strong>Description</strong>: {{ event.description|linebreaks }}</p>
   {% endif %}
   {% if event.contact_name %}
     <p><strong>Contact</strong>: {{ event.contact_name }}</p>
