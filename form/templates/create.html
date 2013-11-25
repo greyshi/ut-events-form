@@ -12,6 +12,7 @@ Create a UT Event
 <script type="text/javascript" src='{% static "jquery/js/jquery-1.9.1.js" %}'></script>
 <script type="text/javascript" src='{% static "jquery/js/jquery-ui-1.10.3.custom.min.js" %}'></script>
 <script type="text/javascript" src='{% static "jquery/js/jquery-ui-timepicker-addon.js" %}'></script>
+<script type="text/javascript" src='{% static "jquery/js/jquery-ui-sliderAccess.js" %}'></script>
 <script type="text/javascript">
   $(document).ready(function(){
     var startDateTextBox = $('#id_start_time');
@@ -22,7 +23,7 @@ Create a UT Event
       dateFormat: 'mm/dd/yy',
       stepMinute: 15,
       addSliderAccess: true,
-      sliderAccessArgs: { touchonly: false },
+      sliderAccessArgs: { touchonly: true },
       onClose: function(dateText, inst) {
         if (endDateTextBox.val() != '') {
           var testStartDate = startDateTextBox.datetimepicker('getDate');
@@ -43,7 +44,7 @@ Create a UT Event
       dateFormat: 'mm/dd/yy',
       stepMinute: 15,
       addSliderAccess: true,
-      sliderAccessArgs: { touchonly: false },
+      sliderAccessArgs: { touchonly: true },
       onClose: function(dateText, inst) {
         if (startDateTextBox.val() != '') {
           var testStartDate = startDateTextBox.datetimepicker('getDate');
@@ -62,8 +63,6 @@ Create a UT Event
   });
 </script>
 {% endblock jquery %}
-
-
 
 {% block content %}
 {% if status == 'success' %}
