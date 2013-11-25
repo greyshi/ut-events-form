@@ -14,18 +14,18 @@ UT Events - {{ event.title }}
 <div class="container">
   <h1><a href="{% url 'home' %}">UT Events</a></h1>
   <legend></legend>
-  <h2 class="text-info" style='margin-top: 30px; margin-bottom: 20px'>{{ event.title }}</h2>
-  <p><strong>Starts</strong>: {{ event.start_time }}</p>
+  <h1 class="text-info" style='margin-top: 30px; margin-bottom: 20px'>{{ event.title }}</h1>
+  <p><strong class="text-info">Starts</strong>: {{ event.start_time }}</p>
   {% if event.end_time %}
-    <p><strong>Ends</strong>: {{ event.end_time }}</p>
+    <p><strong class="text-info">Ends</strong>: {{ event.end_time }}</p>
   {% endif %}
-  <p><strong>Location</strong>: {{ event.location }}</p>
+  <p><strong class="text-info">Location</strong>: {{ event.location }}</p>
   {% if event.contact_name %}
-    <p><strong>Contact</strong>: {{ event.contact_name }}</p>
+    <p><strong class="text-info">Contact</strong>: {{ event.contact_name }}</p>
   {% endif %}
   {% if event.description %}
     <div class="panel panel-default">
-      <div class="panel-heading"><strong>Description</strong></div>
+      <div class="panel-heading"><strong class="text-info">Description</strong></div>
       <div class="panel-body">
         {{ event.description|linebreaks }}
       </div>
