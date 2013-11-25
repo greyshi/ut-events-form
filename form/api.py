@@ -27,3 +27,4 @@ class EventResource(ModelResource):
             'start_time': ['exact', 'lt', 'lte', 'gte', 'gt'],
             'end_time': ['exact', 'lt', 'lte', 'gte', 'gt'],
         }
+        excludes = ['student_email', 'is_verified', 'confirmation_code']
