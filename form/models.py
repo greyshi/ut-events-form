@@ -19,7 +19,7 @@ class Category(models.Model):
 class Event(models.Model):
     title = models.CharField(max_length=255)
     location = models.CharField(max_length=255)
-    description = models.TextField(max_length=2000, blank=True)
+    description = models.TextField(max_length=6000, blank=True)
     pub_date = models.DateTimeField('date published', auto_now_add=True)
     start_time = models.DateTimeField('start of event')
     end_time = models.DateTimeField('end of event', null=True, blank=True)

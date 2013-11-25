@@ -41,7 +41,7 @@ class EventForm(forms.Form):
 
     description = forms.CharField(
         label='Description',
-        max_length=600,
+        max_length=6000,
         widget=forms.Textarea,
         required=False
     )
