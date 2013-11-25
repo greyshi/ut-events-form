@@ -20,11 +20,16 @@ UT Events - {{ event.title }}
     <p><strong>Ends</strong>: {{ event.end_time }}</p>
   {% endif %}
   <p><strong>Location</strong>: {{ event.location }}</p>
-  {% if event.description %}
-    <p><strong>Description</strong>: {{ event.description|linebreaks }}</p>
-  {% endif %}
   {% if event.contact_name %}
     <p><strong>Contact</strong>: {{ event.contact_name }}</p>
+  {% endif %}
+  {% if event.description %}
+    <div class="panel panel-default">
+      <div class="panel-heading"><strong>Description</strong></div>
+      <div class="panel-body">
+        {{ event.description|linebreaks }}
+      </div>
+    </div>
   {% endif %}
   <em><p class='text-info' style="margin-top: 20px">Added on {{ event.pub_date }}</p></em>
 
