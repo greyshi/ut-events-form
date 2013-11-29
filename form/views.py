@@ -1,8 +1,8 @@
 import datetime
 
 from django.shortcuts import render, get_object_or_404
-from django.http  import HttpResponse, HttpResponseRedirect
-from django.core import serializers
+from django.core.mail import send_mail
+from django.core.urlresolvers import reverse
 
 from form.models import Event, Category
 from form.forms import EventForm
@@ -30,13 +30,17 @@ def create(request):
             event = Event(title=title, location=location, start_time=start_time,
                           end_time=end_time, description=description,
                           contact_name=contact_name, student_email=student_email,
-                          confirmation_code=confirmation_code, is_verified=False
-                         )
+                          confirmation_code=confirmation_code, is_verified=False)
             event.save()
             for c in categories:
                 event.categories.add(Category.objects.get(title=c))
             request.session['status'] = 'success'
             form = EventForm()  # clear the form
+            message = "Hi,\n\nThanks for creating an event! Confirm it so others can see it by visiting the link below."\
+                      + "\n\n{0}?project_id={1}&conf_code={2}".format(request.build_absolute_uri(reverse('confirm')),
+                                                                      event.id, event.confirmation_code)
+            send_mail('UT Events - Confirm Your Event', message,
+                      'arashghoreyshi@gmail.com', [event.student_email], fail_silently=False)
         else:
             request.session['status'] = 'failure'
     else:
@@ -44,9 +48,28 @@ def create(request):
 
     return render(request, 'create.html', {'form': form, 'status': request.session['status']})
 
+
 def events(request):
-    event_list = Event.objects.filter(start_time__gte=datetime.datetime.now()).order_by('start_time')
+    event_list = Event.objects.filter(is_verified=True).filter(start_time__gte=datetime.datetime.now()).order_by('start_time')
     return render(request, 'events.html', {'events': event_list})
+
+
+def confirm(request):
+    conf_code = request.GET.get('conf_code')
+    project_id = request.GET.get('project_id')
+    confirmed = False
+    if project_id and project_id.isdigit():
+        try:
+            event = Event.objects.get(pk=project_id)
+        except Exception:
+            event = None
+        if event and event.confirmation_code == conf_code:
+            event.is_verified = True
+            event.save()
+            confirmed = True
+
+    return render(request, 'confirm.html', {'confirmed': confirmed, 'id': project_id})
+
 
 def detail(request, event_id):
     event = get_object_or_404(Event, pk=event_id)

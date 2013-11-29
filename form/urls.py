@@ -11,9 +11,10 @@ v1_api.register(CategoryResource())
 
 urlpatterns = patterns('',
     url(r'^$', 'form.views.home', name='home'),
-    url(r'^create', 'form.views.create', name='create'),
-    url(r'^events$', 'form.views.events', name='events'),
+    url(r'^create/', 'form.views.create', name='create'),
+    url(r'^events/$', 'form.views.events', name='events'),
     url(r'^events/(?P<event_id>\d+)/$', 'form.views.detail', name='detail'),
+    url(r'^confirm/', 'form.views.confirm', name='confirm'),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^api/', include(v1_api.urls)),
 )

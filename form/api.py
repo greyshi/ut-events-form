@@ -10,7 +10,7 @@ class CategoryResource(ModelResource):
         queryset = Category.objects.all()
         resource_name = 'categories'
         authorization= Authorization()
-        allowed_methods = ['get', 'post']
+        allowed_methods = ['get']
 
 
 class EventResource(ModelResource):
