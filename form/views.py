@@ -71,6 +71,10 @@ def confirm(request):
     return render(request, 'confirm.html', {'confirmed': confirmed, 'id': project_id})
 
 
+def android(request):
+    return render(request, 'android.html')
+
+
 def detail(request, event_id):
     event = get_object_or_404(Event, pk=event_id)
     return render(request, 'detail.html', {

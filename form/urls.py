@@ -15,6 +15,7 @@ urlpatterns = patterns('',
     url(r'^events/$', 'form.views.events', name='events'),
     url(r'^events/(?P<event_id>\d+)/$', 'form.views.detail', name='detail'),
     url(r'^confirm/', 'form.views.confirm', name='confirm'),
+    url(r'^android/', 'form.views.android', name='android'),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^api/', include(v1_api.urls)),
 )
